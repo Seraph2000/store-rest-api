@@ -1,5 +1,4 @@
-# test_repository
-# This is a test repository.
+# store_rest_api
 
 ## Installation
 
