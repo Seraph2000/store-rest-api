@@ -22,10 +22,6 @@ app.secret_key = 'seraphina'
 # allow us to add resources to it
 api = Api(app)
 
-@app.before_first_request
-def create_tables():
-    db.create_all()
-
 # initialise jwt object
 # JWT creates a new endpoint - /auth
 # when we call /auth, we send it a username and a password
@@ -39,7 +35,8 @@ api.add_resource(Item, '/item/<string:name>')
 
 api.add_resource(UserRegister, '/register')
 
-
+# this never runs on Heroku
+# uwsgi runs the app for us!
 if __name__ == '__main__':
     # circular imports
     from db import db
