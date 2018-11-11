@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
@@ -12,7 +14,9 @@ app = Flask(__name__)
 # doesn't have to be sqlite - could be mysql, postgresql, etc...
 # SQLAlchemy will JUST WORK!
 # only need to change THIS LINE OF CODE!
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+# fetch app's confg value - os.environ.get('DATABASE_URL')
+# DATABASE_URL is created in Heroku
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
 # to know when an object changed but not saved
 # Flask checks for changes
 # this turns it off. flask_sqlalchemy library has own tracker
